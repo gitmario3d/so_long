@@ -1,43 +1,42 @@
 # **************************************************************************** #
 #                                                                              #
-#                                                         ::::::::             #
-#    Makefile_Unix.mk                                   :+:    :+:             #
-#                                                      +:+                     #
-#    By: W2Wizard <w2.wizzard@gmail.com>              +#+                      #
-#                                                    +#+                       #
-#    Created: 2022/02/26 21:36:38 by W2Wizard      #+#    #+#                  #
-#    Updated: 2022/07/05 14:53:23 by jobvan-d      ########   odam.nl          #
+#                                                         :::      ::::::::    #
+#    Makefile_Unix.mk                                   :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/26 21:36:38 by W2Wizard          #+#    #+#              #
+#    Updated: 2023/12/27 09:38:14 by malena-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #//= Colors =//#
-BOLD	:= \033[1m
-BLACK	:= \033[30;1m
-RED		:= \033[31;1m
-GREEN	:= \033[32;1m
-YELLOW	:= \033[33;1m
-BLUE	:= \033[34;1m
-MAGENTA	:= \033[35;1m
-CYAN	:= \033[36;1m
-WHITE	:= \033[37;1m
-RESET	:= \033[0m
+DEF_COLOR	= \033[0;39m
+MAGENTA		= \033[0;35m
+YELLOW		= \033[0;33m
+GREEN		= \033[0;32m
+WHITE		= \033[0;37m
+RESET		= \033[0m
+GRAY		= \033[0;90m
+BLUE		= \033[0;34m
+CYAN		= \033[0;37m
+RED			= \033[0;31m
+BOLD		= \033[1m
 
 #//= Make Rules =//#
 $(NAME): $(OBJS)
 	@ar rc $@ $^
-	@echo "$(GREEN)$(BOLD)Done$(RESET)"
 
 %.o: %.c $(HDRS)
-	@echo "$(GREEN)$(BOLD)Compiling:$(RESET) $(notdir $<)"
+	@echo "$(MAGENTA)COMPILING...		$(BLUE)$(notdir $<)$(RESET)"
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 # Convert shaders to .c files
 $(SRC_DIR)/mlx_%_shader.c: $(SHADER_DIR)/default.%
-	@echo "$(GREEN)$(BOLD)Shader to C: $< -> $@$(RESET)"
+	@echo "$(MAGENTA)SHADER TO C:		$(BLUE)$< -> $(GREEN)$@$(RESET)"
 	@bash tools/compile_shader.sh $< > $@
 
 clean:
-	@echo "$(RED)Cleaning$(RESET)"
 	@rm -f $(OBJS) $(SHDR)
 
 fclean: clean
