@@ -6,11 +6,29 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:47:58 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 12:18:57 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:55:26 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	set_player_t(t_map_info *map_info)
+{
+	mlx_texture_t	*player_t;
+	mlx_image_t		*player;
+	int				pos_y;
+	int				pos_x;
+
+	player_t = mlx_load_png("./sprites/purple.png");
+	player = mlx_texture_to_image(map_info->mlx, player_t);
+	pos_y = map_info->p_pos_y * 64;
+	pos_x = map_info->p_pos_x * 64;
+	if (!player || (mlx_image_to_window(map_info->mlx, player, pos_x,
+				pos_y) < 0))
+		print_error("problem creating the player.", map_info);
+	map_info->player_t = player_t;
+	map_info->player = player;
+}
 
 mlx_image_t	*check_walls_spr(t_map_info *map_info, char content, int y, int x)
 {
@@ -78,4 +96,5 @@ void	set_tiles(t_map_info *map_info)
 		}
 		y++;
 	}
+	set_player_t(map_info);
 }

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 12:21:51 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/22 14:21:45 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,25 +63,30 @@ void	print_error(char *errormsg, t_map_info *map_info)
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
+	t_map_info	*map_info;
 	mlx_image_t	*img;
+	char		**map;
+	int			*xp;
+	int			*yp;
 
-	img = param;
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		img->instances[0].x += 64;
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		img->instances[0].x -= 64;
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
-		img->instances[0].y += 64;
+	map_info = param;
+	img = map_info->player;
+	map = map_info->map;
+	xp = &(map_info->p_pos_x);
+	yp = &(map_info->p_pos_y);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
-		img->instances[0].y -= 64;
+		check_move(map_info, 1, map_info->p_pos_y - 1, map_info->p_pos_x);
+	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
+		check_move(map_info, 2, map_info->p_pos_y, map_info->p_pos_x + 1);
+	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_PRESS)
+		check_move(map_info, 3, map_info->p_pos_y + 1, map_info->p_pos_x);
+	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+		check_move(map_info, 4, map_info->p_pos_y, map_info->p_pos_x - 1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map_info		*map_info;
-	mlx_t			*mlx;
-	mlx_image_t		*player;
-	mlx_texture_t	*texture;
 
 	map_info = new_map_info();
 	if (!map_info)
@@ -89,12 +94,7 @@ int	main(int argc, char **argv)
 	check_map(argc, argv, map_info);
 	load_textures_imgs(map_info);
 	set_tiles(map_info);
-	texture = mlx_load_png("./sprites/purple.png");
-	mlx = map_info->mlx;
-	player = mlx_texture_to_image(mlx, texture);
-	if (!player || (mlx_image_to_window(mlx, player, 64, 64) < 0))
-		print_error("problem creating the player.", map_info);
-	mlx_key_hook(mlx, &my_keyhook, player);
+	mlx_key_hook(map_info->mlx, &my_keyhook, map_info);
 	mlx_loop(map_info->mlx);
 }
 // memset(img->pixels, 125, img->width * img->height * sizeof(int32_t));
