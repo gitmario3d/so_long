@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/18 13:52:58 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:03:04 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ typedef struct t_map_information
 	mlx_image_t		*ground;
 	mlx_image_t		*coin;
 	mlx_image_t		*exit;
+	mlx_image_t		*b_wall;
+	mlx_image_t		*t_wall;
+	mlx_image_t		*r_wall;
+	mlx_image_t		*l_wall;
+	mlx_image_t		*corner_bl;
+	mlx_image_t		*corner_br;
+	mlx_image_t		*corner_tl;
+	mlx_image_t		*corner_tr;
+	mlx_texture_t	*b_wall_t;
+	mlx_texture_t	*t_wall_t;
+	mlx_texture_t	*l_wall_t;
+	mlx_texture_t	*r_wall_t;
+	mlx_texture_t	*corner_bl_t;
+	mlx_texture_t	*corner_br_t;
+	mlx_texture_t	*corner_tl_t;
+	mlx_texture_t	*corner_tr_t;
 	mlx_texture_t	*wall_t;
 	mlx_texture_t	*ground_t;
 	mlx_texture_t	*coin_t;
@@ -48,5 +64,6 @@ void		check_floodfill(t_map_info *map_info);
 void		free_mat(char **mat);
 char		**matdup(char **mat);
 void		set_tiles(t_map_info *map_info);
+void		load_textures_imgs(t_map_info *map_info);
 
 #endif

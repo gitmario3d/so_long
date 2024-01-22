@@ -6,35 +6,11 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/18 13:58:15 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/22 12:21:51 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-void	load_textures_imgs(t_map_info *map_info)
-{
-	map_info->mlx = mlx_init(map_info->x_size * 64, map_info->y_size * 64,
-			"Test", true);
-	if (!map_info->mlx)
-		print_error("problem creating the window.", map_info);
-	map_info->wall_t = mlx_load_png("./sprites/darkgray.png");
-	map_info->wall = mlx_texture_to_image(map_info->mlx, map_info->wall_t);
-	if (!map_info->wall)
-		print_error("problem creating the wall img.", map_info);
-	map_info->ground_t = mlx_load_png("./sprites/white.png");
-	map_info->ground = mlx_texture_to_image(map_info->mlx, map_info->ground_t);
-	if (!map_info->ground)
-		print_error("problem creating the ground img.", map_info);
-	map_info->coin_t = mlx_load_png("./sprites/orange.png");
-	map_info->coin = mlx_texture_to_image(map_info->mlx, map_info->coin_t);
-	if (!map_info->coin)
-		print_error("problem creating the coin img.", map_info);
-	map_info->exit_t = mlx_load_png("./sprites/green.png");
-	map_info->exit = mlx_texture_to_image(map_info->mlx, map_info->exit_t);
-	if (!map_info->exit)
-		print_error("problem creating the exit img.", map_info);
-}
 
 t_map_info	*new_map_info(void)
 {
@@ -90,14 +66,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 	mlx_image_t	*img;
 
 	img = param;
-	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
-		img->instances[0].x += 64;
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT)
-		img->instances[0].x -= 64;
-	if (keydata.key == MLX_KEY_DOWN && keydata.action == MLX_REPEAT)
-		img->instances[0].y += 64;
-	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_REPEAT)
-		img->instances[0].y -= 64;
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		img->instances[0].x += 64;
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
@@ -112,11 +80,8 @@ int	main(int argc, char **argv)
 {
 	t_map_info		*map_info;
 	mlx_t			*mlx;
-	//mlx_image_t		*img;
 	mlx_image_t		*player;
 	mlx_texture_t	*texture;
-	//int				y;
-	//int				x;
 
 	map_info = new_map_info();
 	if (!map_info)
@@ -124,21 +89,6 @@ int	main(int argc, char **argv)
 	check_map(argc, argv, map_info);
 	load_textures_imgs(map_info);
 	set_tiles(map_info);
-	/*texture = mlx_load_png("./sprites/darkgray.png");
-	img = mlx_texture_to_image(mlx, texture);
-	if (!img || (mlx_image_to_window(mlx, img, 0, 0) < 0))
-		print_error("problem creating the img.", map_info);
-	y = 0;
-	while (y < map_info->y_size)
-	{
-		x = 0;
-		while (x <= map_info->x_size)
-		{
-			if (!img || (mlx_image_to_window(mlx, img, (x++) * 64, y * 64) < 0))
-				print_error("problem creating the img.", map_info);
-		}
-		y++;
-	}*/
 	texture = mlx_load_png("./sprites/purple.png");
 	mlx = map_info->mlx;
 	player = mlx_texture_to_image(mlx, texture);
