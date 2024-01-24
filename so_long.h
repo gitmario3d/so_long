@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 14:12:21 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:10:00 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ char		**matdup(char **mat);
 void		set_tiles(t_map_info *map_info);
 void		load_textures_imgs(t_map_info *map_info);
 void		check_move(t_map_info *map_info, int direction, int y, int x);
+void		set_player_t(t_map_info *map_info);
+void		reload_player(t_map_info *map_info);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 11:42:45 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:07:16 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,11 @@ void	load_textures_imgs(t_map_info *map_info)
 		print_error("problem creating the exit img.", map_info);
 	load_extwall_textimg(map_info);
 	load_extcorner_textimg(map_info);
+}
+
+void	reload_player(t_map_info *map_info)
+{
+	mlx_delete_texture(map_info->player_t);
+	mlx_delete_image(map_info->mlx, map_info->player);
+	set_player_t(map_info);
 }

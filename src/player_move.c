@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 14:24:44 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:10:19 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,15 @@ void	move_player(t_map_info *map_info, int direction)
 	}
 }
 
+void	check_exit_move(t_map_info *map_info, int direction)
+{
+	if (map_info->collectables == 0)
+	{
+		move_player(map_info, direction);
+		ft_printf("YOU WIN!\n");
+	}
+}
+
 void	check_move(t_map_info *map_info, int direction, int y, int x)
 {
 	char		next_pos;
@@ -51,17 +60,12 @@ void	check_move(t_map_info *map_info, int direction, int y, int x)
 			map_info->collectables--;
 			if (mlx_image_to_window(map_info->mlx, ground, x * 64, y * 64) < 0)
 				print_error("problem rendering coin reached", map_info);
+			reload_player(map_info);
 			move_player(map_info, direction);
 			ft_printf("Coins left: %d\n", map_info->collectables);
 		}
 		else if (next_pos == 'E')
-		{
-			if (map_info->collectables == 0)
-			{
-				move_player(map_info, direction);
-				ft_printf("YOU WIN!\n");
-			}
-		}
+			check_exit_move(map_info, direction);
 		else
 			move_player(map_info, direction);
 	}
