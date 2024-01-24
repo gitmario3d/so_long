@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:11:15 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/17 10:34:44 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:31:14 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,15 @@ char	**matdup(char	**mat)
 	}
 	copy[size] = NULL;
 	return (copy);
+}
+
+char	*create_path(t_map_info *map_info, char *str)
+{
+	char	*path;
+	int		size;
+
+	size = ft_strlen(map_info->path_name) + ft_strlen(str) + 1;
+	path = ft_strdup(map_info->path_name);
+	ft_strlcat(path, str, size);
+	return (path);
 }

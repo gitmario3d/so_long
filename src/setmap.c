@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:47:58 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 12:55:26 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:48:40 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_player_t(t_map_info *map_info)
 	int				pos_y;
 	int				pos_x;
 
-	player_t = mlx_load_png("./sprites/purple.png");
+	player_t = mlx_load_png(create_path(map_info, "player_01.png"));
 	player = mlx_texture_to_image(map_info->mlx, player_t);
 	pos_y = map_info->p_pos_y * 64;
 	pos_x = map_info->p_pos_x * 64;
@@ -70,7 +70,12 @@ mlx_image_t	*check_sprites(t_map_info *map_info, int y, int x)
 	else if (content == '0' || content == 'P')
 		return (map_info->ground);
 	else if (content == 'C')
+	{
+		if (mlx_image_to_window(map_info->mlx, map_info->ground, x * 64, y
+				* 64) < 0)
+			print_error("problem rendering ground before coin", map_info);
 		return (map_info->coin);
+	}
 	else if (content == 'E')
 		return (map_info->exit);
 	return (NULL);

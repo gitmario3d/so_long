@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/22 14:21:45 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:51:54 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ int	main(int argc, char **argv)
 	if (!map_info)
 		print_error("failure at mem_alloc(map_info)", map_info);
 	check_map(argc, argv, map_info);
+	if (map_info->x_size % 2 == 0)
+		map_info->path_name = ft_strdup("./sprites/Baseme/");
+	else
+		map_info->path_name = ft_strdup("./sprites/Depths/");
 	load_textures_imgs(map_info);
 	set_tiles(map_info);
 	mlx_key_hook(map_info->mlx, &my_keyhook, map_info);
