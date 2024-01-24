@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:51:54 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:21:14 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,7 @@ t_map_info	*new_map_info(void)
 
 void	print_error(char *errormsg, t_map_info *map_info)
 {
-	int	i;
-
-	i = 0;
-	if (map_info)
-	{
-		if (map_info->map)
-		{
-			while (map_info->map[i])
-				free(map_info->map[i++]);
-			free(map_info->map);
-		}
-		if (map_info->ff_map)
-		{
-			while (map_info->ff_map[i])
-				free(map_info->ff_map[i++]);
-			free(map_info->ff_map);
-		}
-		free(map_info);
-	}
+	free_all(map_info);
 	ft_printf("Error, %s\n", errormsg);
 	exit(0);
 }
@@ -82,6 +64,12 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		check_move(map_info, 3, map_info->p_pos_y + 1, map_info->p_pos_x);
 	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		check_move(map_info, 4, map_info->p_pos_y, map_info->p_pos_x - 1);
+	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+	{
+		mlx_close_window(map_info->mlx);
+		free_all(map_info);
+		exit (0);
+	}
 }
 
 int	main(int argc, char **argv)

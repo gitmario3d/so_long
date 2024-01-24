@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:11:15 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:31:14 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:20:30 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,28 @@ char	*create_path(t_map_info *map_info, char *str)
 	path = ft_strdup(map_info->path_name);
 	ft_strlcat(path, str, size);
 	return (path);
+}
+
+void	free_all(t_map_info *map_info)
+{
+	int	i;
+
+	i = 0;
+	if (map_info)
+	{
+		if (map_info->map)
+		{
+			while (map_info->map[i])
+				free(map_info->map[i++]);
+			free(map_info->map);
+		}
+		i = 0;
+		if (map_info->ff_map)
+		{
+			while (map_info->ff_map[i])
+				free(map_info->ff_map[i++]);
+			free(map_info->ff_map);
+		}
+		free(map_info);
+	}
 }

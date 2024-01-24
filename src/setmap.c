@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:47:58 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:48:40 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:10:35 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,24 +59,22 @@ mlx_image_t	*check_walls_spr(t_map_info *map_info, char content, int y, int x)
 mlx_image_t	*check_sprites(t_map_info *map_info, int y, int x)
 {
 	mlx_image_t	*return_value;
-	char		content;
 
-	content = map_info->map[y][x];
-	return_value = check_walls_spr(map_info, content, y, x);
+	return_value = check_walls_spr(map_info, map_info->map[y][x], y, x);
 	if (return_value)
 		return (return_value);
-	if (content == '1')
+	if (map_info->map[y][x] == '1')
 		return (map_info->wall);
-	else if (content == '0' || content == 'P')
+	else if (map_info->map[y][x] == '0' || map_info->map[y][x] == 'P')
 		return (map_info->ground);
-	else if (content == 'C')
+	else if (map_info->map[y][x] == 'C')
 	{
 		if (mlx_image_to_window(map_info->mlx, map_info->ground, x * 64, y
 				* 64) < 0)
 			print_error("problem rendering ground before coin", map_info);
 		return (map_info->coin);
 	}
-	else if (content == 'E')
+	else if (map_info->map[y][x] == 'E')
 		return (map_info->exit);
 	return (NULL);
 }
@@ -97,7 +95,11 @@ void	set_tiles(t_map_info *map_info)
 		{
 			img = check_sprites(map_info, y, x);
 			if (mlx_image_to_window(mlx, img, (x++) * 64, y * 64) < 0)
-				print_error("problem rendering wall_t", map_info);
+				print_error("problem rendering img (set_tiles)", map_info);
+			if (map_info->map[y][x - 1] == 'E')
+				if (mlx_image_to_window(map_info->mlx, map_info->c_exit, (x - 1)
+						* 64, y * 64) < 0)
+					print_error("problem rendering closed exit", map_info);
 		}
 		y++;
 	}

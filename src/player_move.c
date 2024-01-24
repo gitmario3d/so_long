@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:10:19 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:03:42 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	check_move(t_map_info *map_info, int direction, int y, int x)
 			map_info->collectables--;
 			if (mlx_image_to_window(map_info->mlx, ground, x * 64, y * 64) < 0)
 				print_error("problem rendering coin reached", map_info);
+			if (map_info->collectables == 0)
+				map_info->c_exit->enabled = false;
 			reload_player(map_info);
 			move_player(map_info, direction);
 			ft_printf("Coins left: %d\n", map_info->collectables);

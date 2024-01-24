@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:43:22 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:00:28 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,10 @@ void	load_textures_imgs(t_map_info *map_info)
 		print_error("problem creating the coin img.", map_info);
 	map_info->exit_t = mlx_load_png(create_path(map_info, "o_exit.png"));
 	map_info->exit = mlx_texture_to_image(map_info->mlx, map_info->exit_t);
-	if (!map_info->exit)
-		print_error("problem creating the exit img.", map_info);
+	map_info->c_exit_t = mlx_load_png(create_path(map_info, "c_exit.png"));
+	map_info->c_exit = mlx_texture_to_image(map_info->mlx, map_info->c_exit_t);
+	if (!map_info->c_exit || !map_info->exit)
+		print_error("problem creating the c_exit img.", map_info);
 	load_extwall_textimg(map_info);
 	load_extcorner_textimg(map_info);
 }

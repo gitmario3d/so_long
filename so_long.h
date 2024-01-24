@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 11:35:05 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:18:28 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct t_map_information
 	mlx_image_t		*corner_tl;
 	mlx_image_t		*corner_tr;
 	mlx_image_t		*player;
+	mlx_image_t		*c_exit;
 	mlx_texture_t	*b_wall_t;
 	mlx_texture_t	*t_wall_t;
 	mlx_texture_t	*l_wall_t;
@@ -58,6 +59,7 @@ typedef struct t_map_information
 	mlx_texture_t	*coin_t;
 	mlx_texture_t	*exit_t;
 	mlx_texture_t	*player_t;
+	mlx_texture_t	*c_exit_t;
 }				t_map_info;
 
 void		check_map(int argc, char **argv, t_map_info *map_info);
@@ -72,5 +74,6 @@ void		check_move(t_map_info *map_info, int direction, int y, int x);
 void		set_player_t(t_map_info *map_info);
 void		reload_player(t_map_info *map_info);
 char		*create_path(t_map_info *map_info, char *str);
+void		free_all(t_map_info *map_info);
 
 #endif
