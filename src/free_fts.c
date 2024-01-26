@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 08:56:03 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/26 11:04:20 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:09:15 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,40 +30,76 @@ void	check_imgs2free(t_map_info *map_info, mlx_image_t *image)
 	}
 }*/
 
-void	free_all_images(t_map_info *map_info)
+void	free_map_images(t_map_info *map_info)
 {
-	check_imgs2free(map_info, map_info->wall);
-	check_imgs2free(map_info, map_info->ground);
-	check_imgs2free(map_info, map_info->coin);
-	check_imgs2free(map_info, map_info->exit);
-	check_imgs2free(map_info, map_info->b_wall);
-	check_imgs2free(map_info, map_info->t_wall);
-	check_imgs2free(map_info, map_info->r_wall);
-	check_imgs2free(map_info, map_info->l_wall);
-	check_imgs2free(map_info, map_info->corner_bl);
-	check_imgs2free(map_info, map_info->corner_br);
-	check_imgs2free(map_info, map_info->corner_tl);
-	check_imgs2free(map_info, map_info->corner_tr);
-	check_imgs2free(map_info, map_info->player);
-	check_imgs2free(map_info, map_info->c_exit);
+	if (map_info->wall)
+		mlx_delete_image(map_info->mlx, map_info->wall);
+	if (map_info->ground)
+		mlx_delete_image(map_info->mlx, map_info->ground);
+	if (map_info->exit)
+		mlx_delete_image(map_info->mlx, map_info->exit);
+	if (map_info->b_wall)
+		mlx_delete_image(map_info->mlx, map_info->b_wall);
+	if (map_info->t_wall)
+		mlx_delete_image(map_info->mlx, map_info->t_wall);
+	if (map_info->r_wall)
+		mlx_delete_image(map_info->mlx, map_info->r_wall);
+	if (map_info->l_wall)
+		mlx_delete_image(map_info->mlx, map_info->l_wall);
+	if (map_info->corner_bl)
+		mlx_delete_image(map_info->mlx, map_info->corner_bl);
+	if (map_info->corner_br)
+		mlx_delete_image(map_info->mlx, map_info->corner_br);
+	if (map_info->corner_tl)
+		mlx_delete_image(map_info->mlx, map_info->corner_tl);
+	if (map_info->corner_tr)
+		mlx_delete_image(map_info->mlx, map_info->corner_tr);
+	if (map_info->c_exit)
+		mlx_delete_image(map_info->mlx, map_info->c_exit);
 }
 
-void	free_all_texture(t_map_info *map_info)
+void	free_items_images(t_map_info *map_info)
 {
-	check_text2free(map_info->b_wall_t);
-	check_text2free(map_info->t_wall_t);
-	check_text2free(map_info->l_wall_t);
-	check_text2free(map_info->r_wall_t);
-	check_text2free(map_info->corner_bl_t);
-	check_text2free(map_info->corner_br_t);
-	check_text2free(map_info->corner_tl_t);
-	check_text2free(map_info->corner_tr_t);
-	check_text2free(map_info->wall_t);
-	check_text2free(map_info->ground_t);
-	check_text2free(map_info->coin_t);
-	check_text2free(map_info->exit_t);
-	check_text2free(map_info->c_exit_t);
-	check_text2free(map_info->player_t);
+	if (map_info->coin)
+		mlx_delete_image(map_info->mlx, map_info->coin);
+	if (map_info->player)
+		mlx_delete_image(map_info->mlx, map_info->player);
+}
+
+void	free_map_textures(t_map_info *map_info)
+{
+	if (map_info->b_wall_t)
+		mlx_delete_texture(map_info->b_wall_t);
+	if (map_info->t_wall_t)
+		mlx_delete_texture(map_info->t_wall_t);
+	if (map_info->l_wall_t)
+		mlx_delete_texture(map_info->l_wall_t);
+	if (map_info->r_wall_t)
+		mlx_delete_texture(map_info->r_wall_t);
+	if (map_info->corner_bl_t)
+		mlx_delete_texture(map_info->corner_bl_t);
+	if (map_info->corner_br_t)
+		mlx_delete_texture(map_info->corner_br_t);
+	if (map_info->corner_tl_t)
+		mlx_delete_texture(map_info->corner_tl_t);
+	if (map_info->corner_tr_t)
+		mlx_delete_texture(map_info->corner_tr_t);
+	if (map_info->wall_t)
+		mlx_delete_texture(map_info->wall_t);
+	if (map_info->ground_t)
+		mlx_delete_texture(map_info->ground_t);
+	if (map_info->exit_t)
+		mlx_delete_texture(map_info->exit_t);
+	if (map_info->c_exit_t)
+		mlx_delete_texture(map_info->c_exit_t);
+}
+
+void	free_items_texture(t_map_info *map_info)
+{
+	if (map_info->coin_t)
+		mlx_delete_texture(map_info->coin_t);
+	if (map_info->player_t)
+		mlx_delete_texture(map_info->player_t);
 }
 
 void	free_all(t_map_info *map_info)
@@ -77,10 +113,16 @@ void	free_all(t_map_info *map_info)
 			free_mat(map_info->map);
 		if (map_info->ff_map)
 			free_mat(map_info->ff_map);
-		free_all_texture(map_info);
+		free_map_images(map_info);
+		free_items_images(map_info);
+		free_map_textures(map_info);
+		free_items_texture(map_info);
+		if (map_info->mlx)
+		{
+			mlx_close_window(map_info->mlx);
+			mlx_terminate(map_info->mlx);
+		}
 		ft_printf("Aquí si llega.\n");
-		free_all_images(map_info);
-		mlx_terminate(map_info->mlx);
 		close (map_info->fd);
 		free(map_info);
 	}
