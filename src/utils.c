@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 14:11:15 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/26 08:56:01 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:37:07 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,11 @@ char	*create_path(t_map_info *map_info, char *str, char *path)
 		print_error("problem mem_aloc while ft_strdup of path_name", map_info);
 	ft_strlcat(path, str, size);
 	return (path);
+}
+
+void	print_error(char *errormsg, t_map_info *map_info)
+{
+	free_all(map_info);
+	ft_printf("Error, %s\n", errormsg);
+	exit(0);
 }

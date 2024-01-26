@@ -6,7 +6,7 @@
 #    By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/26 08:57:05 by malena-b         ###   ########.fr        #
+#    Updated: 2024/01/26 12:17:16 by malena-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ LIBFT = ./my_libft
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC_DIR = src/
+BONUS_DIR = src/bonus/
 OBJ_DIR = obj/
 
 DEF_COLOR	= \033[0;39m
@@ -32,9 +33,12 @@ RED			= \033[0;31m
 BOLD		= \033[1m
 
 SRC_FILES = main checkmap utils flood_fill setmap load_img player_move free_fts
+BONUS_FILES = 
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+BONUS_SRC = $(addprefix $(BONUS_DIR), $(addsuffix .c, $(SRC_FILES)))
+BONUS_OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(BONUS_FILES)))
 
 OBJF = .cache_exists
 

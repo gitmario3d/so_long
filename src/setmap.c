@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:47:58 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 13:11:39 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:12:34 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ mlx_image_t	*check_sprites(t_map_info *map_info, int y, int x)
 	if (return_value)
 		return (return_value);
 	if (map_info->map[y][x] == '1')
-		return (map_info->wall);
+		return (map_info->stone);
 	else if (map_info->map[y][x] == '0' || map_info->map[y][x] == 'P')
 		return (map_info->ground);
 	else if (map_info->map[y][x] == 'C')

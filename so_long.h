@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 12:43:18 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:11:52 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct t_map_information
 	char			*path_name;
 	int				steps;
 	mlx_t			*mlx;
-	mlx_image_t		*wall;
+	mlx_image_t		*stone;
 	mlx_image_t		*ground;
 	mlx_image_t		*coin;
 	mlx_image_t		*exit;
@@ -55,7 +55,7 @@ typedef struct t_map_information
 	mlx_texture_t	*corner_br_t;
 	mlx_texture_t	*corner_tl_t;
 	mlx_texture_t	*corner_tr_t;
-	mlx_texture_t	*wall_t;
+	mlx_texture_t	*stone_t;
 	mlx_texture_t	*ground_t;
 	mlx_texture_t	*coin_t;
 	mlx_texture_t	*exit_t;

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/26 09:13:26 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 12:22:31 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	check_exit_move(t_map_info *map_info, int direction)
 	if (map_info->collectables == 0)
 	{
 		move_player(map_info, direction);
-		ft_printf("YOU WIN!\n");
 		free_all(map_info);
 		exit (0);
 	}
@@ -67,7 +66,6 @@ void	check_move(t_map_info *map_info, int direction, int y, int x)
 				map_info->c_exit->enabled = false;
 			reload_player(map_info);
 			move_player(map_info, direction);
-			ft_printf("Coins left: %d\n", map_info->collectables);
 		}
 		else if (next_pos == 'E')
 			check_exit_move(map_info, direction);

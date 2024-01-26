@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/26 10:42:49 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:36:22 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 void	leak(void)
 {
 	system("leaks so_long");
+}
+
+void	initialize_textures(t_map_info *map_info)
+{
+	map_info->b_wall_t = NULL;
+	map_info->t_wall_t = NULL;
+	map_info->l_wall_t = NULL;
+	map_info->r_wall_t = NULL;
+	map_info->corner_bl_t = NULL;
+	map_info->corner_br_t = NULL;
+	map_info->corner_tl_t = NULL;
+	map_info->corner_tr_t = NULL;
+	map_info->stone_t = NULL;
+	map_info->ground_t = NULL;
+	map_info->coin_t = NULL;
+	map_info->exit_t = NULL;
+	map_info->c_exit_t = NULL;
+	map_info->player_t = NULL;
 }
 
 t_map_info	*new_map_info(void)
@@ -39,29 +57,15 @@ t_map_info	*new_map_info(void)
 	map_info->ff_map = NULL;
 	map_info->fd = 0;
 	map_info->steps = 0;
+	initialize_textures(map_info);
 	return (map_info);
-}
-
-void	print_error(char *errormsg, t_map_info *map_info)
-{
-	free_all(map_info);
-	ft_printf("Error, %s\n", errormsg);
-	exit(0);
 }
 
 void	my_keyhook(mlx_key_data_t keydata, void *param)
 {
 	t_map_info	*map_info;
-	mlx_image_t	*img;
-	char		**map;
-	int			*xp;
-	int			*yp;
 
 	map_info = param;
-	img = map_info->player;
-	map = map_info->map;
-	xp = &(map_info->p_pos_x);
-	yp = &(map_info->p_pos_y);
 	if (keydata.key == MLX_KEY_UP && keydata.action == MLX_PRESS)
 		check_move(map_info, 1, map_info->p_pos_y - 1, map_info->p_pos_x);
 	if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
@@ -94,4 +98,5 @@ int	main(int argc, char **argv)
 	set_tiles(map_info);
 	mlx_key_hook(map_info->mlx, &my_keyhook, map_info);
 	mlx_loop(map_info->mlx);
+	return (0);
 }
