@@ -6,11 +6,16 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 12:21:14 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:42:49 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	leak(void)
+{
+	system("leaks so_long");
+}
 
 t_map_info	*new_map_info(void)
 {
@@ -33,6 +38,7 @@ t_map_info	*new_map_info(void)
 	map_info->ff_exits = 0;
 	map_info->ff_map = NULL;
 	map_info->fd = 0;
+	map_info->steps = 0;
 	return (map_info);
 }
 
@@ -66,7 +72,6 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		check_move(map_info, 4, map_info->p_pos_y, map_info->p_pos_x - 1);
 	if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 	{
-		mlx_close_window(map_info->mlx);
 		free_all(map_info);
 		exit (0);
 	}
@@ -76,17 +81,17 @@ int	main(int argc, char **argv)
 {
 	t_map_info		*map_info;
 
+	atexit(leak);
 	map_info = new_map_info();
 	if (!map_info)
 		print_error("failure at mem_alloc(map_info)", map_info);
 	check_map(argc, argv, map_info);
 	if (map_info->x_size % 2 == 0)
-		map_info->path_name = ft_strdup("./sprites/Baseme/");
+		map_info->path_name = "./sprites/Baseme/";
 	else
-		map_info->path_name = ft_strdup("./sprites/Depths/");
+		map_info->path_name = "./sprites/Depths/";
 	load_textures_imgs(map_info);
 	set_tiles(map_info);
 	mlx_key_hook(map_info->mlx, &my_keyhook, map_info);
 	mlx_loop(map_info->mlx);
 }
-// memset(img->pixels, 125, img->width * img->height * sizeof(int32_t));

@@ -6,7 +6,7 @@
 #    By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/22 13:55:23 by malena-b         ###   ########.fr        #
+#    Updated: 2024/01/26 08:57:05 by malena-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CYAN		= \033[0;37m
 RED			= \033[0;31m
 BOLD		= \033[1m
 
-SRC_FILES = main checkmap utils flood_fill setmap load_img player_move
+SRC_FILES = main checkmap utils flood_fill setmap load_img player_move free_fts
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 12:00:28 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 08:38:24 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,78 +14,81 @@
 
 void	load_extcorner_textimg(t_map_info *m_i)
 {
-	m_i->corner_bl_t = mlx_load_png(create_path(m_i, "bl_corner.png"));
+	char	*path;
+
+	path = NULL;
+	path = create_path(m_i, "bl_corner.png", path);
+	m_i->corner_bl_t = mlx_load_png(path);
 	m_i->corner_bl = mlx_texture_to_image(m_i->mlx, m_i->corner_bl_t);
-	if (!m_i->corner_bl)
-		print_error("problem creating the corner_bl img.", m_i);
-	m_i->corner_br_t = mlx_load_png(create_path(m_i, "br_corner.png"));
-	m_i->corner_br = mlx_texture_to_image(m_i->mlx,
-			m_i->corner_br_t);
-	if (!m_i->corner_br)
-		print_error("problem creating the corner_br img.", m_i);
-	m_i->corner_tl_t = mlx_load_png(create_path(m_i, "tl_corner.png"));
-	m_i->corner_tl = mlx_texture_to_image(m_i->mlx,
-			m_i->corner_tl_t);
-	if (!m_i->corner_tl)
-		print_error("problem creating the corner_tl img.", m_i);
-	m_i->corner_tr_t = mlx_load_png(create_path(m_i, "tr_corner.png"));
-	m_i->corner_tr = mlx_texture_to_image(m_i->mlx,
-			m_i->corner_tr_t);
-	if (!m_i->corner_tr)
-		print_error("problem creating the corner_tr img.", m_i);
+	path = create_path(m_i, "br_corner.png", path);
+	m_i->corner_br_t = mlx_load_png(path);
+	m_i->corner_br = mlx_texture_to_image(m_i->mlx, m_i->corner_br_t);
+	path = create_path(m_i, "tl_corner.png", path);
+	m_i->corner_tl_t = mlx_load_png(path);
+	m_i->corner_tl = mlx_texture_to_image(m_i->mlx, m_i->corner_tl_t);
+	path = create_path(m_i, "tr_corner.png", path);
+	m_i->corner_tr_t = mlx_load_png(path);
+	m_i->corner_tr = mlx_texture_to_image(m_i->mlx, m_i->corner_tr_t);
+	free(path);
+	if (!m_i->corner_tr || !m_i->corner_br || !m_i->corner_tl
+		|| !m_i->corner_bl)
+		print_error("problem creating the corners imgs.", m_i);
 }
 
-void	load_extwall_textimg(t_map_info *map_info)
+void	load_extwall_textimg(t_map_info *m_i)
 {
-	map_info->t_wall_t = mlx_load_png(create_path(map_info, "t_wall.png"));
-	map_info->t_wall = mlx_texture_to_image(map_info->mlx, map_info->t_wall_t);
-	if (!map_info->t_wall)
-		print_error("problem creating the t_wall img.", map_info);
-	map_info->b_wall_t = mlx_load_png(create_path(map_info, "b_wall.png"));
-	map_info->b_wall = mlx_texture_to_image(map_info->mlx, map_info->b_wall_t);
-	if (!map_info->b_wall)
-		print_error("problem creating the b_wall img.", map_info);
-	map_info->l_wall_t = mlx_load_png(create_path(map_info, "l_wall.png"));
-	map_info->l_wall = mlx_texture_to_image(map_info->mlx, map_info->l_wall_t);
-	if (!map_info->l_wall)
-		print_error("problem creating the l_wall img.", map_info);
-	map_info->r_wall_t = mlx_load_png(create_path(map_info, "r_wall.png"));
-	map_info->r_wall = mlx_texture_to_image(map_info->mlx, map_info->r_wall_t);
-	if (!map_info->r_wall)
-		print_error("problem creating the r_wall img.", map_info);
+	char	*path;
+
+	path = NULL;
+	path = create_path(m_i, "t_wall.png", path);
+	m_i->t_wall_t = mlx_load_png(path);
+	m_i->t_wall = mlx_texture_to_image(m_i->mlx, m_i->t_wall_t);
+	path = create_path(m_i, "b_wall.png", path);
+	m_i->b_wall_t = mlx_load_png(path);
+	m_i->b_wall = mlx_texture_to_image(m_i->mlx, m_i->b_wall_t);
+	path = create_path(m_i, "l_wall.png", path);
+	m_i->l_wall_t = mlx_load_png(path);
+	m_i->l_wall = mlx_texture_to_image(m_i->mlx, m_i->l_wall_t);
+	path = create_path(m_i, "r_wall.png", path);
+	m_i->r_wall_t = mlx_load_png(path);
+	m_i->r_wall = mlx_texture_to_image(m_i->mlx, m_i->r_wall_t);
+	free(path);
+	if (!m_i->r_wall || !m_i->l_wall || !m_i->b_wall || !m_i->t_wall)
+		print_error("problem creating the sides walls imgs.", m_i);
 }
 
-void	load_textures_imgs(t_map_info *map_info)
+void	load_textures_imgs(t_map_info *m_i)
 {
-	map_info->mlx = mlx_init(map_info->x_size * 64, map_info->y_size * 64,
-			"Test", true);
-	if (!map_info->mlx)
-		print_error("problem creating the window.", map_info);
-	map_info->wall_t = mlx_load_png(create_path(map_info, "rock.png"));
-	map_info->wall = mlx_texture_to_image(map_info->mlx, map_info->wall_t);
-	if (!map_info->wall)
-		print_error("problem creating the wall img.", map_info);
-	map_info->ground_t = mlx_load_png(create_path(map_info, "ground.png"));
-	map_info->ground = mlx_texture_to_image(map_info->mlx, map_info->ground_t);
-	if (!map_info->ground)
-		print_error("problem creating the ground img.", map_info);
-	map_info->coin_t = mlx_load_png(create_path(map_info, "coin_01.png"));
-	map_info->coin = mlx_texture_to_image(map_info->mlx, map_info->coin_t);
-	if (!map_info->coin)
-		print_error("problem creating the coin img.", map_info);
-	map_info->exit_t = mlx_load_png(create_path(map_info, "o_exit.png"));
-	map_info->exit = mlx_texture_to_image(map_info->mlx, map_info->exit_t);
-	map_info->c_exit_t = mlx_load_png(create_path(map_info, "c_exit.png"));
-	map_info->c_exit = mlx_texture_to_image(map_info->mlx, map_info->c_exit_t);
-	if (!map_info->c_exit || !map_info->exit)
-		print_error("problem creating the c_exit img.", map_info);
-	load_extwall_textimg(map_info);
-	load_extcorner_textimg(map_info);
+	char	*path;
+
+	path = NULL;
+	m_i->mlx = mlx_init(m_i->x_size * 64, m_i->y_size * 64, "Window", true);
+	path = create_path(m_i, "rock.png", path);
+	m_i->wall_t = mlx_load_png(path);
+	m_i->wall = mlx_texture_to_image(m_i->mlx, m_i->wall_t);
+	path = create_path(m_i, "ground.png", path);
+	m_i->ground_t = mlx_load_png(path);
+	m_i->ground = mlx_texture_to_image(m_i->mlx, m_i->ground_t);
+	path = create_path(m_i, "coin_01.png", path);
+	m_i->coin_t = mlx_load_png(path);
+	m_i->coin = mlx_texture_to_image(m_i->mlx, m_i->coin_t);
+	path = create_path(m_i, "o_exit.png", path);
+	m_i->exit_t = mlx_load_png(path);
+	m_i->exit = mlx_texture_to_image(m_i->mlx, m_i->exit_t);
+	path = create_path(m_i, "c_exit.png", path);
+	m_i->c_exit_t = mlx_load_png(path);
+	m_i->c_exit = mlx_texture_to_image(m_i->mlx, m_i->c_exit_t);
+	free (path);
+	if (!m_i->c_exit || !m_i->exit || !m_i->mlx || !m_i->wall || !m_i->ground
+		|| !m_i->coin)
+		print_error("problem creating the c_exit img.", m_i);
+	load_extwall_textimg(m_i);
+	load_extcorner_textimg(m_i);
 }
 
-void	reload_player(t_map_info *map_info)
+void	reload_player(t_map_info *m_i)
 {
-	mlx_delete_texture(map_info->player_t);
-	mlx_delete_image(map_info->mlx, map_info->player);
-	set_player_t(map_info);
+	mlx_delete_texture(m_i->player_t);
+	mlx_delete_image(m_i->mlx, m_i->player);
+	set_player_t(m_i);
 }

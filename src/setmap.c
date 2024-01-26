@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 10:47:58 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 12:10:35 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 13:11:39 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ void	set_player_t(t_map_info *map_info)
 	mlx_image_t		*player;
 	int				pos_y;
 	int				pos_x;
+	char			*path;
 
-	player_t = mlx_load_png(create_path(map_info, "player_01.png"));
+	path = NULL;
+	path = create_path(map_info, "player_01.png", path);
+	player_t = mlx_load_png(path);
+	free (path);
 	player = mlx_texture_to_image(map_info->mlx, player_t);
 	pos_y = map_info->p_pos_y * 64;
 	pos_x = map_info->p_pos_x * 64;

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/24 12:18:28 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/24 12:43:18 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct t_map_information
 	char			**ff_map;
 	int				fd;
 	char			*path_name;
+	int				steps;
 	mlx_t			*mlx;
 	mlx_image_t		*wall;
 	mlx_image_t		*ground;
@@ -73,7 +74,7 @@ void		load_textures_imgs(t_map_info *map_info);
 void		check_move(t_map_info *map_info, int direction, int y, int x);
 void		set_player_t(t_map_info *map_info);
 void		reload_player(t_map_info *map_info);
-char		*create_path(t_map_info *map_info, char *str);
+char		*create_path(t_map_info *map_info, char *str, char *path);
 void		free_all(t_map_info *map_info);
 
 #endif

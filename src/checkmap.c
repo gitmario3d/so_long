@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:06:57 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/18 11:58:34 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/26 10:52:36 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,6 @@ void	save_map(t_map_info *map_info)
 	while (map_info->map[j])
 		j++;
 	map_info->y_size = j;
-	//set_tiles(map_info);
 }
 
 void	check_map(int argc, char **argv, t_map_info	*map_info)
