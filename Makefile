@@ -6,7 +6,7 @@
 #    By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/26 12:17:16 by malena-b         ###   ########.fr        #
+#    Updated: 2024/01/29 13:14:57 by malena-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ LIBFT = ./my_libft
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 SRC_DIR = src/
-BONUS_DIR = src/bonus/
 OBJ_DIR = obj/
 
 DEF_COLOR	= \033[0;39m
@@ -33,11 +32,12 @@ RED			= \033[0;31m
 BOLD		= \033[1m
 
 SRC_FILES = main checkmap utils flood_fill setmap load_img player_move free_fts
-BONUS_FILES = 
+BONUS_FILES = main_bonus checkmap_bonus utils_bonus flood_fill_bonus setmap_bonus \
+				 load_img_bonus player_move_bonus free_fts_bonus
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
-BONUS_SRC = $(addprefix $(BONUS_DIR), $(addsuffix .c, $(SRC_FILES)))
+BONUS_SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(BONUS_FILES)))
 BONUS_OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(BONUS_FILES)))
 
 OBJF = .cache_exists
@@ -90,6 +90,18 @@ norm:
 	@echo "Norminette of libft files: "
 	@norminette $(LIBFT)
 	@echo
-						
-.PHONY: all clean fclean re norm compiling
+
+bonus: compiling $(BONUS_OBJ)
+	@echo
+	@echo "$(YELLOW)COMPILING LIBFT:$(RESET)"
+	@make all -C $(LIBFT)
+	@echo
+	@echo "$(YELLOW)COMPILING MLX42:$(RESET)"
+	@make -C $(MLX42)
+	@$(CC) $(CFLAGS) $(BONUS_OBJ) -L$(LIBFT) -lft -L$(MLX42) -lmlx42 -framework Cocoa -framework OpenGL -framework IOKit -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib/" -o $(NAME)
+	@echo
+	@echo "$(GREEN)COMPLETE!$(RESET)"
+	@echo
+				
+.PHONY: all clean fclean re norm compiling bonus
 

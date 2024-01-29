@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/29 13:13:25 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/29 14:45:18 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct t_map_information
 	int				fd;
 	char			*path_name;
 	int				steps;
+	char			*count;
 	mlx_t			*mlx;
 	mlx_image_t		*stone;
 	mlx_image_t		*ground;
@@ -47,6 +48,7 @@ typedef struct t_map_information
 	mlx_image_t		*corner_tr;
 	mlx_image_t		*player;
 	mlx_image_t		*c_exit;
+	mlx_image_t		*moves_img;
 	mlx_texture_t	*b_wall_t;
 	mlx_texture_t	*t_wall_t;
 	mlx_texture_t	*l_wall_t;
@@ -71,11 +73,11 @@ void		free_mat(char **mat);
 char		**matdup(char **mat);
 void		set_tiles(t_map_info *map_info);
 void		load_textures_imgs(t_map_info *map_info);
-void		check_move(t_map_info *map_info, int direction, int y, int x);
+int			check_move(t_map_info *map_info, int direction, int y, int x);
 void		set_player_t(t_map_info *map_info);
 void		reload_player(t_map_info *map_info);
 char		*create_path(t_map_info *map_info, char *str, char *path);
 void		free_all(t_map_info *map_info);
-int			check_move_b(t_map_info *map_info, int direction, int y, int x);
+void		reload_count(t_map_info *m_i);
 
 #endif
