@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:04 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 13:18:30 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:17:50 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,43 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 		reload_count(m_i);
 }
 
-/*void	main_hook(void *map_info)
+void	player_anim(t_player_render *player_r, int timer)
 {
-	t_map_info	*m_i;
+	if (timer == 0)
+	{
+		player_r->player_05->instances[0].enabled = false;
+		player_r->player_01->instances[0].enabled = true;
+	}
+	else if (timer == 5)
+	{
+		player_r->player_01->instances[0].enabled = false;
+		player_r->player_02->instances[0].enabled = true;
+	}
+	else if (timer == 10)
+	{
+		player_r->player_02->instances[0].enabled = false;
+		player_r->player_03->instances[0].enabled = true;
+	}
+	else if (timer == 15)
+	{
+		player_r->player_03->instances[0].enabled = false;
+		player_r->player_04->instances[0].enabled = true;
+	}
+	else if (timer == 20)
+	{
+		player_r->player_04->instances[0].enabled = false;
+		player_r->player_05->instances[0].enabled = true;
+	}
+}
+
+void	main_hook(void *map_info)
+{
+	t_map_info		*m_i;
+	static int		timer;
 
 	m_i = map_info;
-}*/
+	player_anim(m_i->player_r, timer);
+	timer++;
+	if (timer >= 25)
+		timer = 0;
+}

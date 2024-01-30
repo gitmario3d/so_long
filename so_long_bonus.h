@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 13:15:44 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:16:10 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,7 @@ void		my_keyhook(mlx_key_data_t keydata, void *param);
 t_map_info	*new_map_info(void);
 void		save_player_t(t_map_info *map_info);
 mlx_image_t	*init_pl_img(t_map_info *m_i, mlx_texture_t *texture);
+void		main_hook(void *map_info);
+void		disable_anim_imgs(t_player_render *player_r);
 
 #endif

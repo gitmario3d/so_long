@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 12:47:42 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:12:05 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,9 @@ int	main(int argc, char **argv)
 	save_player_t(map_info);
 	set_tiles(map_info);
 	mlx_key_hook(map_info->mlx, &my_keyhook, map_info);
-	/*if (mlx_loop_hook(map_info->mlx, main_hook, map_info) == false)
-		print_error("failure starting the main hook", map_info);*/
+	disable_anim_imgs(map_info->player_r);
+	if (mlx_loop_hook(map_info->mlx, &main_hook, map_info) == false)
+		print_error("failure starting the main hook", map_info);
 	mlx_loop(map_info->mlx);
 	return (0);
 }

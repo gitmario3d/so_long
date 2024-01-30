@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 13:19:20 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:18:47 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void	reload_player(t_map_info *m_i)
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_04);
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_05);
 	set_player_t(m_i);
+	disable_anim_imgs(m_i->player_r);
 }
 
 void	set_player_t(t_map_info *map_info)
