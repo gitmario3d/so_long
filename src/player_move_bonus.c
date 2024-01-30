@@ -6,34 +6,49 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/29 13:21:35 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 12:51:45 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
+void	move_player_imgs(t_map_info *map_info, int direction, int move)
+{
+	t_player_render	*player_render;
+	int				i;
+
+	player_render = map_info->player_r;
+	i = 0;
+	if (direction == 1 || direction == 3)
+	{
+		map_info->p_pos_y += move;
+		(player_render->player_01)->instances[0].y += (move * 64);
+		(player_render->player_02)->instances[0].y += (move * 64);
+		(player_render->player_03)->instances[0].y += (move * 64);
+		(player_render->player_04)->instances[0].y += (move * 64);
+		(player_render->player_05)->instances[0].y += (move * 64);
+	}
+	else if (direction == 2 || direction == 4)
+	{
+		map_info->p_pos_x += move;
+		(player_render->player_01)->instances[0].x += (move * 64);
+		(player_render->player_02)->instances[0].x += (move * 64);
+		(player_render->player_03)->instances[0].x += (move * 64);
+		(player_render->player_04)->instances[0].x += (move * 64);
+		(player_render->player_05)->instances[0].x += (move * 64);
+	}
+}
+
 int	move_player(t_map_info *map_info, int direction)
 {
 	if (direction == 1)
-	{
-		map_info->p_pos_y--;
-		(map_info->player)->instances[0].y -= 64;
-	}
-	if (direction == 2)
-	{
-		map_info->p_pos_x++;
-		(map_info->player)->instances[0].x += 64;
-	}
-	if (direction == 3)
-	{
-		map_info->p_pos_y++;
-		(map_info->player)->instances[0].y += 64;
-	}
-	if (direction == 4)
-	{
-		map_info->p_pos_x--;
-		(map_info->player)->instances[0].x -= 64;
-	}
+		move_player_imgs(map_info, direction, -1);
+	else if (direction == 2)
+		move_player_imgs(map_info, direction, 1);
+	else if (direction == 3)
+		move_player_imgs(map_info, direction, 1);
+	else if (direction == 4)
+		move_player_imgs(map_info, direction, -1);
 	ft_printf("You moved %d times!\n", ++(map_info->steps));
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/18 10:33:13 by dparada           #+#    #+#              #
-#    Updated: 2024/01/29 13:14:57 by malena-b         ###   ########.fr        #
+#    Updated: 2024/01/30 13:09:18 by malena-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,8 @@ BOLD		= \033[1m
 
 SRC_FILES = main checkmap utils flood_fill setmap load_img player_move free_fts
 BONUS_FILES = main_bonus checkmap_bonus utils_bonus flood_fill_bonus setmap_bonus \
-				 load_img_bonus player_move_bonus free_fts_bonus
+				 load_img_bonus player_move_bonus free_fts_bonus hooks_bonus init_fts_bonus \
+				 	utils_bonus_2
 
 SRC = $(addprefix $(SRC_DIR), $(addsuffix .c, $(SRC_FILES)))
 OBJ = $(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))

@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 08:56:03 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/29 14:50:09 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:20:19 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,16 @@ void	free_items_texture(t_map_info *map_info)
 {
 	if (map_info->coin_t)
 		mlx_delete_texture(map_info->coin_t);
-	if (map_info->player_t)
-		mlx_delete_texture(map_info->player_t);
+	if (map_info->player_r->player_01_t)
+		mlx_delete_texture(map_info->player_r->player_01_t);
+	if (map_info->player_r->player_02_t)
+		mlx_delete_texture(map_info->player_r->player_02_t);
+	if (map_info->player_r->player_03_t)
+		mlx_delete_texture(map_info->player_r->player_03_t);
+	if (map_info->player_r->player_04_t)
+		mlx_delete_texture(map_info->player_r->player_04_t);
+	if (map_info->player_r->player_05_t)
+		mlx_delete_texture(map_info->player_r->player_05_t);
 }
 
 void	free_all(t_map_info *map_info)
@@ -63,6 +71,8 @@ void	free_all(t_map_info *map_info)
 		if (map_info->mlx)
 			mlx_terminate(map_info->mlx);
 		close (map_info->fd);
+		if (map_info->player_r)
+			free(map_info->player_r);
 		free(map_info);
 	}
 }

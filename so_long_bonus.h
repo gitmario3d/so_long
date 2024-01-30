@@ -6,15 +6,29 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/29 14:45:18 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:15:44 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include "MLX42/include/MLX42/MLX42.h"
 # include "my_libft/libft.h"
+
+typedef struct t_player_rend
+{
+	mlx_image_t		*player_01;
+	mlx_image_t		*player_02;
+	mlx_image_t		*player_03;
+	mlx_image_t		*player_04;
+	mlx_image_t		*player_05;
+	mlx_texture_t	*player_01_t;
+	mlx_texture_t	*player_02_t;
+	mlx_texture_t	*player_03_t;
+	mlx_texture_t	*player_04_t;
+	mlx_texture_t	*player_05_t;
+}				t_player_render;
 
 typedef struct t_map_information
 {
@@ -46,7 +60,6 @@ typedef struct t_map_information
 	mlx_image_t		*corner_br;
 	mlx_image_t		*corner_tl;
 	mlx_image_t		*corner_tr;
-	mlx_image_t		*player;
 	mlx_image_t		*c_exit;
 	mlx_image_t		*moves_img;
 	mlx_texture_t	*b_wall_t;
@@ -61,9 +74,10 @@ typedef struct t_map_information
 	mlx_texture_t	*ground_t;
 	mlx_texture_t	*coin_t;
 	mlx_texture_t	*exit_t;
-	mlx_texture_t	*player_t;
 	mlx_texture_t	*c_exit_t;
+	t_player_render	*player_r;
 }				t_map_info;
+
 
 void		check_map(int argc, char **argv, t_map_info *map_info);
 void		print_error(char *errormsg, t_map_info *map_info);
@@ -79,5 +93,9 @@ void		reload_player(t_map_info *map_info);
 char		*create_path(t_map_info *map_info, char *str, char *path);
 void		free_all(t_map_info *map_info);
 void		reload_count(t_map_info *m_i);
+void		my_keyhook(mlx_key_data_t keydata, void *param);
+t_map_info	*new_map_info(void);
+void		save_player_t(t_map_info *map_info);
+mlx_image_t	*init_pl_img(t_map_info *m_i, mlx_texture_t *texture);
 
 #endif

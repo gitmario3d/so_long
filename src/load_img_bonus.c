@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/29 13:20:34 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/01/30 13:19:20 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	load_textures_imgs(t_map_info *m_i)
 	path = create_path(m_i, "c_exit.png", path);
 	m_i->c_exit_t = mlx_load_png(path);
 	m_i->c_exit = mlx_texture_to_image(m_i->mlx, m_i->c_exit_t);
-	free (path);
+	free(path);
 	if (!m_i->c_exit || !m_i->exit || !m_i->mlx || !m_i->stone || !m_i->ground
 		|| !m_i->coin)
 		print_error("problem creating the c_exit img.", m_i);
@@ -88,7 +88,40 @@ void	load_textures_imgs(t_map_info *m_i)
 
 void	reload_player(t_map_info *m_i)
 {
-	mlx_delete_texture(m_i->player_t);
-	mlx_delete_image(m_i->mlx, m_i->player);
+	ft_printf("Llega!\n");
+	mlx_delete_image(m_i->mlx, m_i->player_r->player_01);
+	mlx_delete_image(m_i->mlx, m_i->player_r->player_02);
+	mlx_delete_image(m_i->mlx, m_i->player_r->player_03);
+	mlx_delete_image(m_i->mlx, m_i->player_r->player_04);
+	mlx_delete_image(m_i->mlx, m_i->player_r->player_05);
 	set_player_t(m_i);
+}
+
+void	set_player_t(t_map_info *map_info)
+{
+	int				pos_y;
+	int				pos_x;
+	t_player_render	*p_r;
+
+	p_r = map_info->player_r;
+	pos_y = map_info->p_pos_y * 64;
+	pos_x = map_info->p_pos_x * 64;
+	p_r->player_01 = init_pl_img(map_info, p_r->player_01_t);
+	p_r->player_02 = init_pl_img(map_info, p_r->player_02_t);
+	p_r->player_03 = init_pl_img(map_info, p_r->player_03_t);
+	p_r->player_04 = init_pl_img(map_info, p_r->player_04_t);
+	p_r->player_05 = init_pl_img(map_info, p_r->player_05_t);
+	if (!p_r->player_01 || !p_r->player_02 || !p_r->player_03 || !p_r->player_04
+		|| !p_r->player_05)
+		print_error("problem creating the player images.", map_info);
+	if ((mlx_image_to_window(map_info->mlx, p_r->player_01, pos_x, pos_y) < 0))
+		print_error("problem rendering the player_01 image.", map_info);
+	if ((mlx_image_to_window(map_info->mlx, p_r->player_02, pos_x, pos_y) < 0))
+		print_error("problem rendering the player_02 image.", map_info);
+	if ((mlx_image_to_window(map_info->mlx, p_r->player_03, pos_x, pos_y) < 0))
+		print_error("problem rendering the player_03 image.", map_info);
+	if ((mlx_image_to_window(map_info->mlx, p_r->player_04, pos_x, pos_y) < 0))
+		print_error("problem rendering the player_04 image.", map_info);
+	if ((mlx_image_to_window(map_info->mlx, p_r->player_05, pos_x, pos_y) < 0))
+		print_error("problem rendering the player_05 image.", map_info);
 }
