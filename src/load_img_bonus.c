@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 14:18:47 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:36:13 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ void	load_textures_imgs(t_map_info *m_i)
 
 void	reload_player(t_map_info *m_i)
 {
-	ft_printf("Llega!\n");
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_01);
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_02);
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_03);

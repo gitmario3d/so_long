@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 08:56:03 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 13:20:19 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 11:53:40 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,34 @@ void	free_items_texture(t_map_info *map_info)
 		mlx_delete_texture(map_info->player_r->player_05_t);
 }
 
+void	free_enemies_textures(t_map_info *map_info)
+{
+	if (map_info->tfly_r)
+	{
+		if (map_info->tfly_r->tfly_01_t)
+			mlx_delete_texture(map_info->tfly_r->tfly_01_t);
+		if (map_info->tfly_r->tfly_02_t)
+			mlx_delete_texture(map_info->tfly_r->tfly_02_t);
+		if (map_info->tfly_r->tfly_03_t)
+			mlx_delete_texture(map_info->tfly_r->tfly_03_t);
+		if (map_info->tfly_r->tfly_04_t)
+			mlx_delete_texture(map_info->tfly_r->tfly_04_t);
+		free (map_info->tfly_r);
+	}
+	if (map_info->rfly_r)
+	{
+		if (map_info->rfly_r->rfly_01_t)
+			mlx_delete_texture(map_info->rfly_r->rfly_01_t);
+		if (map_info->rfly_r->rfly_02_t)
+			mlx_delete_texture(map_info->rfly_r->rfly_02_t);
+		if (map_info->rfly_r->rfly_03_t)
+			mlx_delete_texture(map_info->rfly_r->rfly_03_t);
+		if (map_info->rfly_r->rfly_04_t)
+			mlx_delete_texture(map_info->rfly_r->rfly_04_t);
+		free (map_info->rfly_r);
+	}
+}
+
 void	free_all(t_map_info *map_info)
 {
 	if (map_info)
@@ -68,6 +96,7 @@ void	free_all(t_map_info *map_info)
 			free (map_info->count);
 		free_map_textures(map_info);
 		free_items_texture(map_info);
+		free_enemies_textures(map_info);
 		if (map_info->mlx)
 			mlx_terminate(map_info->mlx);
 		close (map_info->fd);

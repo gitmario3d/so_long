@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 12:37:16 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 14:16:17 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 12:00:30 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ t_map_info	*new_map_info(void)
 	map_info->p_pos_y = 0;
 	map_info->ff_collec = 0;
 	map_info->ff_exits = 0;
-	map_info->ff_map = NULL;
 	map_info->fd = 0;
 	map_info->steps = 0;
-	map_info->moves_img = NULL;
-	map_info->count = NULL;
+	set_mapvalues_null(map_info);
 	new_player_render(map_info);
+	new_tfly_render(map_info);
+	new_rfly_render(map_info);
 	initialize_textures(map_info);
 	return (map_info);
 }

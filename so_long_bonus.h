@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 14:16:10 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:07:10 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,34 @@ typedef struct t_player_rend
 	mlx_texture_t	*player_05_t;
 }				t_player_render;
 
+typedef struct t_tfly_render
+{
+	mlx_image_t		*tfly_01;
+	mlx_image_t		*tfly_02;
+	mlx_image_t		*tfly_03;
+	mlx_image_t		*tfly_04;
+	mlx_texture_t	*tfly_01_t;
+	mlx_texture_t	*tfly_02_t;
+	mlx_texture_t	*tfly_03_t;
+	mlx_texture_t	*tfly_04_t;
+	int				x;
+	int				y;
+}				t_tfly_rend;
+
+typedef struct t_rfly_render
+{
+	mlx_image_t		*rfly_01;
+	mlx_image_t		*rfly_02;
+	mlx_image_t		*rfly_03;
+	mlx_image_t		*rfly_04;
+	mlx_texture_t	*rfly_01_t;
+	mlx_texture_t	*rfly_02_t;
+	mlx_texture_t	*rfly_03_t;
+	mlx_texture_t	*rfly_04_t;
+	int				x;
+	int				y;
+}				t_rfly_rend;
+
 typedef struct t_map_information
 {
 	int				collectables;
@@ -47,6 +75,8 @@ typedef struct t_map_information
 	char			*path_name;
 	int				steps;
 	char			*count;
+	int				tflies;
+	int				rflies;
 	mlx_t			*mlx;
 	mlx_image_t		*stone;
 	mlx_image_t		*ground;
@@ -76,6 +106,8 @@ typedef struct t_map_information
 	mlx_texture_t	*exit_t;
 	mlx_texture_t	*c_exit_t;
 	t_player_render	*player_r;
+	t_tfly_rend		*tfly_r;
+	t_rfly_rend		*rfly_r;
 }				t_map_info;
 
 
@@ -99,5 +131,13 @@ void		save_player_t(t_map_info *map_info);
 mlx_image_t	*init_pl_img(t_map_info *m_i, mlx_texture_t *texture);
 void		main_hook(void *map_info);
 void		disable_anim_imgs(t_player_render *player_r);
+void		set_mapvalues_null(t_map_info *map_info);
+void		new_tfly_render(t_map_info *map_info);
+void		new_rfly_render(t_map_info *map_info);
+void		init_tfly_imgs(t_tfly_rend *tfly_r, mlx_t *mlx, t_map_info *m_i);
+void		init_rfly_imgs(t_rfly_rend *rfly_r, mlx_t *mlx, t_map_info *m_i);
+void		render_flies_onmap(t_map_info *m, t_tfly_rend *t, t_rfly_rend *r);
+void		init_enemies_imgs(t_map_info *m_i);
+void		kill_check(t_map_info *m_i);
 
 #endif

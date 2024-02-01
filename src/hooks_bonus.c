@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:04 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 14:17:50 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 13:59:00 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,54 @@ void	player_anim(t_player_render *player_r, int timer)
 	}
 }
 
+void	tflie_anim(t_tfly_rend *tflie_r, int timer)
+{
+	if (timer == 0 || timer == 12)
+	{
+		tflie_r->tfly_04->instances[0].enabled = false;
+		tflie_r->tfly_01->instances[0].enabled = true;
+	}
+	else if (timer == 3 || timer == 15)
+	{
+		tflie_r->tfly_01->instances[0].enabled = false;
+		tflie_r->tfly_02->instances[0].enabled = true;
+	}
+	else if (timer == 6 || timer == 18)
+	{
+		tflie_r->tfly_02->instances[0].enabled = false;
+		tflie_r->tfly_03->instances[0].enabled = true;
+	}
+	else if (timer == 9 || timer == 21)
+	{
+		tflie_r->tfly_03->instances[0].enabled = false;
+		tflie_r->tfly_04->instances[0].enabled = true;
+	}
+}
+
+void	rflie_anim(t_rfly_rend *rflie_r, int timer)
+{
+	if (timer == 0 || timer == 12)
+	{
+		rflie_r->rfly_04->instances[0].enabled = false;
+		rflie_r->rfly_01->instances[0].enabled = true;
+	}
+	else if (timer == 3 || timer == 15)
+	{
+		rflie_r->rfly_01->instances[0].enabled = false;
+		rflie_r->rfly_02->instances[0].enabled = true;
+	}
+	else if (timer == 6 || timer == 18)
+	{
+		rflie_r->rfly_02->instances[0].enabled = false;
+		rflie_r->rfly_03->instances[0].enabled = true;
+	}
+	else if (timer == 9 || timer == 21)
+	{
+		rflie_r->rfly_03->instances[0].enabled = false;
+		rflie_r->rfly_04->instances[0].enabled = true;
+	}
+}
+
 void	main_hook(void *map_info)
 {
 	t_map_info		*m_i;
@@ -72,6 +120,8 @@ void	main_hook(void *map_info)
 
 	m_i = map_info;
 	player_anim(m_i->player_r, timer);
+	tflie_anim(m_i->tfly_r, timer);
+	rflie_anim(m_i->rfly_r, timer);
 	timer++;
 	if (timer >= 25)
 		timer = 0;

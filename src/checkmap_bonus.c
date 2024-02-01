@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:06:57 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 12:45:08 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 13:44:08 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,28 @@ int	check_extwalls(t_map_info *map_info)
 	return (1);
 }
 
-void	map_chars_check(t_map_info *map_info, char c)
+void	map_chars_check(t_map_info *map_info, char c, int x, int y)
 {
 	if (c == 'C')
 		map_info->collectables++;
 	else if (c == 'E')
 		map_info->exits++;
+	else if (c == 'T')
+	{
+		map_info->tflies++;
+		if (map_info->tflies > 1)
+			print_error("too may tflies on the map.\n", map_info);
+		map_info->tfly_r->x = y;
+		map_info->tfly_r->y = x;
+	}
+	else if (c == 'R')
+	{
+		map_info->rflies++;
+		if (map_info->rflies > 1)
+			print_error("too may rflies on the map.\n", map_info);
+		map_info->rfly_r->x = y;
+		map_info->rfly_r->y = x;
+	}
 	else if (c != '0' && c != '1' && c != 'P')
 		print_error("invalid character found in map.", map_info);
 }
@@ -67,7 +83,7 @@ void	map_matcheck(t_map_info *map_info)
 				map_info->p_pos_y = i;
 				map_info->players++;
 			}
-			map_chars_check(map_info, map_info->map[i][j]);
+			map_chars_check(map_info, map_info->map[i][j], i, j);
 			j++;
 		}
 		j = 0;

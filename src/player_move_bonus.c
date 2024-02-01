@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 12:51:45 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:21:52 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	move_player(t_map_info *map_info, int direction)
 		move_player_imgs(map_info, direction, 1);
 	else if (direction == 4)
 		move_player_imgs(map_info, direction, -1);
+	kill_check(map_info);
 	ft_printf("You moved %d times!\n", ++(map_info->steps));
 	return (1);
 }
@@ -58,6 +59,7 @@ void	check_exit_move(t_map_info *map_info, int direction)
 	if (map_info->collectables == 0)
 	{
 		move_player(map_info, direction);
+		ft_printf("YOU WON!\n");
 		free_all(map_info);
 		exit (0);
 	}

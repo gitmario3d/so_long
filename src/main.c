@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/30 12:47:34 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/01 14:22:38 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ int	main(int argc, char **argv)
 {
 	t_map_info		*map_info;
 
-	//atexit(leak);
 	map_info = new_map_info();
 	if (!map_info)
 		print_error("failure at mem_alloc(map_info)", map_info);
