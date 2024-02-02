@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 13:09:26 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 14:06:54 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:48:40 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,27 @@ mlx_image_t	*init_pl_img(t_map_info *m_i, mlx_texture_t *texture)
 	return (image);
 }
 
-void	disable_anim_imgs(t_player_render *player_r)
+void	disable_anim_imgs(t_map_info *m_i)
 {
-	player_r->player_01->instances[0].enabled = false;
-	player_r->player_02->instances[0].enabled = false;
-	player_r->player_03->instances[0].enabled = false;
-	player_r->player_04->instances[0].enabled = false;
-	player_r->player_05->instances[0].enabled = false;
+	m_i->player_r->player_01->instances[0].enabled = true;
+	m_i->player_r->player_02->instances[0].enabled = false;
+	m_i->player_r->player_03->instances[0].enabled = false;
+	m_i->player_r->player_04->instances[0].enabled = false;
+	m_i->player_r->player_05->instances[0].enabled = false;
+	if (m_i->tflies)
+	{
+		m_i->tfly_r->tfly_01->instances[0].enabled = true;
+		m_i->tfly_r->tfly_02->instances[0].enabled = false;
+		m_i->tfly_r->tfly_03->instances[0].enabled = false;
+		m_i->tfly_r->tfly_04->instances[0].enabled = false;
+	}
+	if (m_i->rflies)
+	{
+		m_i->rfly_r->rfly_01->instances[0].enabled = true;
+		m_i->rfly_r->rfly_02->instances[0].enabled = false;
+		m_i->rfly_r->rfly_03->instances[0].enabled = false;
+		m_i->rfly_r->rfly_04->instances[0].enabled = false;
+	}
 }
 
 void	set_mapvalues_null(t_map_info *map_info)

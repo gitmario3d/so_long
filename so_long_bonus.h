@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 14:07:10 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:34:04 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct t_map_information
 	char			*count;
 	int				tflies;
 	int				rflies;
+	//int				aux_grounds;
 	mlx_t			*mlx;
 	mlx_image_t		*stone;
 	mlx_image_t		*ground;
@@ -92,6 +93,8 @@ typedef struct t_map_information
 	mlx_image_t		*corner_tr;
 	mlx_image_t		*c_exit;
 	mlx_image_t		*moves_img;
+	//mlx_image_t		*aux_ground;
+	//mlx_texture_t	*aux_ground_t;
 	mlx_texture_t	*b_wall_t;
 	mlx_texture_t	*t_wall_t;
 	mlx_texture_t	*l_wall_t;
@@ -121,7 +124,7 @@ void		set_tiles(t_map_info *map_info);
 void		load_textures_imgs(t_map_info *map_info);
 int			check_move(t_map_info *map_info, int direction, int y, int x);
 void		set_player_t(t_map_info *map_info);
-void		reload_player(t_map_info *map_info);
+void		reload_anims(t_map_info *map_info);
 char		*create_path(t_map_info *map_info, char *str, char *path);
 void		free_all(t_map_info *map_info);
 void		reload_count(t_map_info *m_i);
@@ -130,7 +133,7 @@ t_map_info	*new_map_info(void);
 void		save_player_t(t_map_info *map_info);
 mlx_image_t	*init_pl_img(t_map_info *m_i, mlx_texture_t *texture);
 void		main_hook(void *map_info);
-void		disable_anim_imgs(t_player_render *player_r);
+void		disable_anim_imgs(t_map_info *m_i);
 void		set_mapvalues_null(t_map_info *map_info);
 void		new_tfly_render(t_map_info *map_info);
 void		new_rfly_render(t_map_info *map_info);
@@ -139,5 +142,8 @@ void		init_rfly_imgs(t_rfly_rend *rfly_r, mlx_t *mlx, t_map_info *m_i);
 void		render_flies_onmap(t_map_info *m, t_tfly_rend *t, t_rfly_rend *r);
 void		init_enemies_imgs(t_map_info *m_i);
 void		kill_check(t_map_info *m_i);
+int			fifty_fifty(int a, int b, int random_generator);
+int			tflie_movement(t_map_info *m_i, t_tfly_rend	*tfly, int random);
+int			rflie_movement(t_map_info *m_i, t_rfly_rend	*rfly, int r1);
 
 #endif

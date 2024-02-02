@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 13:37:41 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 14:21:52 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 12:19:00 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	check_move(t_map_info *map_info, int direction, int y, int x)
 				print_error("problem rendering coin reached", map_info);
 			if (map_info->collectables == 0)
 				map_info->c_exit->enabled = false;
-			reload_player(map_info);
+			reload_anims(map_info);
 			return (move_player(map_info, direction));
 		}
 		else if (next_pos == 'E')

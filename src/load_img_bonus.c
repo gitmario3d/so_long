@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 12:36:13 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:51:04 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	load_textures_imgs(t_map_info *m_i)
 	char	*path;
 
 	path = NULL;
-	m_i->mlx = mlx_init(m_i->x_size * 64, m_i->y_size * 64, "Window", true);
 	path = create_path(m_i, "rock.png", path);
 	m_i->stone_t = mlx_load_png(path);
 	m_i->stone = mlx_texture_to_image(m_i->mlx, m_i->stone_t);
@@ -81,12 +80,12 @@ void	load_textures_imgs(t_map_info *m_i)
 	free(path);
 	if (!m_i->c_exit || !m_i->exit || !m_i->mlx || !m_i->stone || !m_i->ground
 		|| !m_i->coin)
-		print_error("problem creating the c_exit img.", m_i);
+		print_error("problem creating the imgs (load_texture_imgs).", m_i);
 	load_extwall_textimg(m_i);
 	load_extcorner_textimg(m_i);
 }
 
-void	reload_player(t_map_info *m_i)
+void	reload_anims(t_map_info *m_i)
 {
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_01);
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_02);
@@ -94,7 +93,24 @@ void	reload_player(t_map_info *m_i)
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_04);
 	mlx_delete_image(m_i->mlx, m_i->player_r->player_05);
 	set_player_t(m_i);
-	disable_anim_imgs(m_i->player_r);
+	if (m_i->tflies)
+	{
+		mlx_delete_image(m_i->mlx, m_i->tfly_r->tfly_01);
+		mlx_delete_image(m_i->mlx, m_i->tfly_r->tfly_02);
+		mlx_delete_image(m_i->mlx, m_i->tfly_r->tfly_03);
+		mlx_delete_image(m_i->mlx, m_i->tfly_r->tfly_04);
+		init_tfly_imgs(m_i->tfly_r, m_i->mlx, m_i);
+	}
+	if (m_i->rflies)
+	{
+		mlx_delete_image(m_i->mlx, m_i->rfly_r->rfly_01);
+		mlx_delete_image(m_i->mlx, m_i->rfly_r->rfly_02);
+		mlx_delete_image(m_i->mlx, m_i->rfly_r->rfly_03);
+		mlx_delete_image(m_i->mlx, m_i->rfly_r->rfly_04);
+		init_rfly_imgs(m_i->rfly_r, m_i->mlx, m_i);
+	}
+	render_flies_onmap(m_i, m_i->tfly_r, m_i->rfly_r);
+	disable_anim_imgs(m_i);
 }
 
 void	set_player_t(t_map_info *map_info)

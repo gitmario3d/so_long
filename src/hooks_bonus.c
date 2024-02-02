@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:04 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 13:59:00 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:55:43 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,13 +116,27 @@ void	rflie_anim(t_rfly_rend *rflie_r, int timer)
 void	main_hook(void *map_info)
 {
 	t_map_info		*m_i;
-	static int		timer;
+	static int		anim_timer;
+	static int		move_timer;
+	static int		random_generator;
 
 	m_i = map_info;
-	player_anim(m_i->player_r, timer);
-	tflie_anim(m_i->tfly_r, timer);
-	rflie_anim(m_i->rfly_r, timer);
-	timer++;
-	if (timer >= 25)
-		timer = 0;
+	player_anim(m_i->player_r, anim_timer);
+	if (m_i->tflies)
+		tflie_anim(m_i->tfly_r, anim_timer);
+	if (m_i->rflies)
+		rflie_anim(m_i->rfly_r, anim_timer);
+	anim_timer++;
+	move_timer++;
+	random_generator++;
+	if (anim_timer >= 25)
+		anim_timer = 0;
+	if (random_generator >= 9)
+		random_generator = 0;
+	if ((move_timer == 20 || move_timer >= 50))
+		rflie_movement(m_i, m_i->rfly_r, random_generator);
+	if (move_timer >= 50 && m_i->tflies)
+		tflie_movement(m_i, m_i->tfly_r, random_generator);
+	if (move_timer >= 50)
+		move_timer = 0;
 }

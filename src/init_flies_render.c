@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/01 10:31:08 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/01 13:47:18 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 11:39:01 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 
 void	init_tfly_imgs(t_tfly_rend *tfly_r, mlx_t *mlx, t_map_info *m_i)
 {
-	tfly_r->tfly_01_t = mlx_load_png("./sprites/Depths/fly_01.png");
-	tfly_r->tfly_02_t = mlx_load_png("./sprites/Depths/fly_02.png");
-	tfly_r->tfly_03_t = mlx_load_png("./sprites/Depths/fly_03.png");
-	tfly_r->tfly_04_t = mlx_load_png("./sprites/Depths/fly_04.png");
+	if (!(tfly_r->tfly_01_t))
+	{
+		tfly_r->tfly_01_t = mlx_load_png("./sprites/Depths/fly_01.png");
+		tfly_r->tfly_02_t = mlx_load_png("./sprites/Depths/fly_02.png");
+		tfly_r->tfly_03_t = mlx_load_png("./sprites/Depths/fly_03.png");
+		tfly_r->tfly_04_t = mlx_load_png("./sprites/Depths/fly_04.png");
+	}
 	if (!(tfly_r->tfly_01_t) || !(tfly_r->tfly_02_t) || !(tfly_r->tfly_03_t)
 		|| !(tfly_r->tfly_04_t))
 		print_error("failure at initiation of tfly_render textures.\n", m_i);
@@ -52,10 +55,13 @@ void	new_tfly_render(t_map_info *map_info)
 
 void	init_rfly_imgs(t_rfly_rend *rfly_r, mlx_t *mlx, t_map_info *m_i)
 {
-	rfly_r->rfly_01_t = mlx_load_png("./sprites/Baseme/fly_01.png");
-	rfly_r->rfly_02_t = mlx_load_png("./sprites/Baseme/fly_02.png");
-	rfly_r->rfly_03_t = mlx_load_png("./sprites/Baseme/fly_03.png");
-	rfly_r->rfly_04_t = mlx_load_png("./sprites/Baseme/fly_04.png");
+	if (!(rfly_r->rfly_01_t))
+	{
+		rfly_r->rfly_01_t = mlx_load_png("./sprites/Baseme/fly_01.png");
+		rfly_r->rfly_02_t = mlx_load_png("./sprites/Baseme/fly_02.png");
+		rfly_r->rfly_03_t = mlx_load_png("./sprites/Baseme/fly_03.png");
+		rfly_r->rfly_04_t = mlx_load_png("./sprites/Baseme/fly_04.png");
+	}
 	if (!(rfly_r->rfly_01_t) || !(rfly_r->rfly_02_t) || !(rfly_r->rfly_03_t)
 		|| !(rfly_r->rfly_04_t))
 		print_error("failure at initiation of rfly_render textures.\n", m_i);
