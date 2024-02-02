@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 08:37:36 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:08:52 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	my_keyhook(mlx_key_data_t keydata, void *param)
 int	main(int argc, char **argv)
 {
 	t_map_info		*map_info;
-	
+
 	map_info = new_map_info();
 	if (!map_info)
 		print_error("failure at mem_alloc(map_info)", map_info);

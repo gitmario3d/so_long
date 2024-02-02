@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/02 08:41:23 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 13:54:35 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:01:39 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ int	rflie_movement(t_map_info *m_i, t_rfly_rend	*rfly, int r1)
 	axis = 0;
 	direction = 0;
 	axis = fifty_fifty(1, 2, r1);
-	ft_printf("Entra en la función!\n");
 	if (axis == 1)
 	{
 		direction = fifty_fifty(1, 3, m_i->p_pos_x);

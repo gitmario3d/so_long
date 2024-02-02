@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:44:21 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 13:34:04 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:08:39 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ typedef struct t_map_information
 	char			*count;
 	int				tflies;
 	int				rflies;
-	//int				aux_grounds;
 	mlx_t			*mlx;
 	mlx_image_t		*stone;
 	mlx_image_t		*ground;
@@ -93,8 +92,6 @@ typedef struct t_map_information
 	mlx_image_t		*corner_tr;
 	mlx_image_t		*c_exit;
 	mlx_image_t		*moves_img;
-	//mlx_image_t		*aux_ground;
-	//mlx_texture_t	*aux_ground_t;
 	mlx_texture_t	*b_wall_t;
 	mlx_texture_t	*t_wall_t;
 	mlx_texture_t	*l_wall_t;
