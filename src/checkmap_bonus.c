@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 14:06:57 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 12:10:59 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:51:08 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ void	save_map(t_map_info *map_info)
 	i = 1;
 	j = 0;
 	new_line = get_next_line(map_info->fd);
+	if (!new_line)
+		print_error("empty map or not a valid file type.", map_info);
 	map_info->x_size = ft_strlen(new_line);
 	map_info->map[0] = new_line;
 	while (new_line != NULL)
@@ -119,8 +121,7 @@ void	save_map(t_map_info *map_info)
 	}
 	map_info->map[i] = NULL;
 	while (map_info->map[j])
-		j++;
-	map_info->y_size = j;
+		map_info->y_size = ++j;
 }
 
 void	check_map(int argc, char **argv, t_map_info	*map_info)

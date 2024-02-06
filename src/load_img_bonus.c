@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 13:51:04 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:52:52 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	load_extwall_textimg(t_map_info *m_i)
 	free(path);
 	if (!m_i->r_wall || !m_i->l_wall || !m_i->b_wall || !m_i->t_wall)
 		print_error("problem creating the sides walls imgs.", m_i);
+	load_extcorner_textimg(m_i);
 }
 
 void	load_textures_imgs(t_map_info *m_i)
@@ -64,6 +65,8 @@ void	load_textures_imgs(t_map_info *m_i)
 	path = NULL;
 	path = create_path(m_i, "rock.png", path);
 	m_i->stone_t = mlx_load_png(path);
+	if (!(m_i->stone_t))
+		print_error("couldn't create the textures!", m_i);
 	m_i->stone = mlx_texture_to_image(m_i->mlx, m_i->stone_t);
 	path = create_path(m_i, "ground.png", path);
 	m_i->ground_t = mlx_load_png(path);
@@ -82,7 +85,6 @@ void	load_textures_imgs(t_map_info *m_i)
 		|| !m_i->coin)
 		print_error("problem creating the imgs (load_texture_imgs).", m_i);
 	load_extwall_textimg(m_i);
-	load_extcorner_textimg(m_i);
 }
 
 void	reload_anims(t_map_info *m_i)

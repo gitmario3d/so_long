@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/01/26 13:12:10 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:38:13 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,18 @@ void	load_extwall_textimg(t_map_info *m_i)
 		print_error("problem creating the sides walls imgs.", m_i);
 }
 
+void	load_imgs(t_map_info *m_i)
+{
+	m_i->stone = mlx_texture_to_image(m_i->mlx, m_i->stone_t);
+	m_i->ground = mlx_texture_to_image(m_i->mlx, m_i->ground_t);
+	m_i->coin = mlx_texture_to_image(m_i->mlx, m_i->coin_t);
+	m_i->exit = mlx_texture_to_image(m_i->mlx, m_i->exit_t);
+	m_i->c_exit = mlx_texture_to_image(m_i->mlx, m_i->c_exit_t);
+	if (!m_i->c_exit || !m_i->exit || !m_i->mlx || !m_i->stone || !m_i->ground
+		|| !m_i->coin)
+		print_error("problem creating the c_exit img.", m_i);
+}
+
 void	load_textures_imgs(t_map_info *m_i)
 {
 	char	*path;
@@ -65,23 +77,19 @@ void	load_textures_imgs(t_map_info *m_i)
 	m_i->mlx = mlx_init(m_i->x_size * 64, m_i->y_size * 64, "Window", true);
 	path = create_path(m_i, "rock.png", path);
 	m_i->stone_t = mlx_load_png(path);
-	m_i->stone = mlx_texture_to_image(m_i->mlx, m_i->stone_t);
+	if (!(m_i->stone_t))
+		print_error("couldn't create the textures!", m_i);
+	ft_printf("Aquí llega!\n");
 	path = create_path(m_i, "ground.png", path);
 	m_i->ground_t = mlx_load_png(path);
-	m_i->ground = mlx_texture_to_image(m_i->mlx, m_i->ground_t);
 	path = create_path(m_i, "coin_01.png", path);
 	m_i->coin_t = mlx_load_png(path);
-	m_i->coin = mlx_texture_to_image(m_i->mlx, m_i->coin_t);
 	path = create_path(m_i, "o_exit.png", path);
 	m_i->exit_t = mlx_load_png(path);
-	m_i->exit = mlx_texture_to_image(m_i->mlx, m_i->exit_t);
 	path = create_path(m_i, "c_exit.png", path);
 	m_i->c_exit_t = mlx_load_png(path);
-	m_i->c_exit = mlx_texture_to_image(m_i->mlx, m_i->c_exit_t);
 	free (path);
-	if (!m_i->c_exit || !m_i->exit || !m_i->mlx || !m_i->stone || !m_i->ground
-		|| !m_i->coin)
-		print_error("problem creating the c_exit img.", m_i);
+	load_imgs(m_i);
 	load_extwall_textimg(m_i);
 	load_extcorner_textimg(m_i);
 }
