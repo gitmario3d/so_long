@@ -6,16 +6,12 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 14:08:52 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:42:54 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-/*void	leak(void)
-{
-	system("leaks so_long");
-}*/
 
 void	initialize_textures(t_map_info *map_info)
 {

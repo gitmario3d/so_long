@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 11:11:04 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 13:55:43 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:18:20 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	main_hook(void *map_info)
 		anim_timer = 0;
 	if (random_generator >= 9)
 		random_generator = 0;
-	if ((move_timer == 20 || move_timer >= 50))
+	if ((move_timer == 20 || move_timer >= 50) && m_i->rflies)
 		rflie_movement(m_i, m_i->rfly_r, random_generator);
 	if (move_timer >= 50 && m_i->tflies)
 		tflie_movement(m_i, m_i->tfly_r, random_generator);

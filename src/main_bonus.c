@@ -6,17 +6,12 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 11:55:49 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/02 14:11:29 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/06 11:38:19 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long_bonus.h"
 
-/*void	leak(void)
-{
-	system("leaks so_long");
-}*/
-//Función que genera un random entre dos números
 int	fifty_fifty(int a, int b, int random_generator)
 {
 	if (random_generator % 2 == 0)
