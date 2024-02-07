@@ -6,7 +6,7 @@
 /*   By: malena-b <mario3d93@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/22 11:01:40 by malena-b          #+#    #+#             */
-/*   Updated: 2024/02/06 13:38:13 by malena-b         ###   ########.fr       */
+/*   Updated: 2024/02/07 08:10:22 by malena-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	load_textures_imgs(t_map_info *m_i)
 	m_i->stone_t = mlx_load_png(path);
 	if (!(m_i->stone_t))
 		print_error("couldn't create the textures!", m_i);
-	ft_printf("Aquí llega!\n");
 	path = create_path(m_i, "ground.png", path);
 	m_i->ground_t = mlx_load_png(path);
 	path = create_path(m_i, "coin_01.png", path);
